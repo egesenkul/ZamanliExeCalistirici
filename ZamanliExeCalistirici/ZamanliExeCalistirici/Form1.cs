@@ -70,7 +70,7 @@ namespace ZamanliExeCalistirici
             }
         }
 
-        private void btnProgramSec_Click(object sender, EventArgs e)
+        private void btnProgramSec_Click(object sender, EventArgs e) // GÖZAT BUTONUNA BASINCA AÇILAN EKRANDIR
         {
             try
             {
@@ -88,13 +88,71 @@ namespace ZamanliExeCalistirici
             
         }
 
-        private void btnOnayla_Click(object sender, EventArgs e)
+        private void btnOnayla_Click(object sender, EventArgs e) // ÇALIŞACAK PROGRAMIN SEÇİLİP KONTROL EDİLDİĞİ ALANDIR
         {
-            if (string.IsNullOrEmpty(txtDosyaYolu.Text))
+            try
             {
-                MessageBox.Show("ÇALIŞACAK PROGRAMIN DOSYA YOLUNU BELİRTİNİZ");
-                btnProgramSec.Focus();
-                return;
+                if (string.IsNullOrEmpty(txtDosyaYolu.Text))
+                {
+                    MessageBox.Show("ÇALIŞACAK PROGRAMIN DOSYA YOLUNU BELİRTİNİZ");
+                    btnProgramSec.Focus();
+                    return;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
+        }
+
+        private void btnZamanEkle_Click(object sender, EventArgs e) // TANIMLA ZAMAN EKLE BUTONUNA BASINCA ÇALIŞACAK KISIMDIR
+        {
+            try
+            {
+                if (txtZamanEkleSaat.Text.Equals("24"))
+                    txtZamanEkleSaat.Text = "0";
+                if (Convert.ToInt32(txtZamanEkleSaat.Text) > 24) // SAAT 24'DEN BÜYÜK OLAMAZ
+                {
+                    MessageBox.Show("EKLENECEK ZAMANIN SAAT BİLGİSİ 24'DEN KÜÇÜK OLMALIDIR");
+                    txtZamanEkleSaat.Focus();
+                    return;
+                }
+                if (Convert.ToInt32(txtZamanEkleDakika.Text) > 59) // DAKİKA 59DAN BÜYÜK OLAMAZ
+                {
+                    MessageBox.Show("EKLENECEK ZAMANIN DAKİKA BİLGİSİ 60'DAN KÜÇÜK OLMALIDIR");
+                    txtZamanEkleDakika.Focus();
+                    return;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
+        }
+
+        private void btnCalistir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblDurum.ForeColor = Color.Green;
+                lblDurum.Text = "AKTİF";
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblDurum.ForeColor = Color.Red;
+                lblDurum.Text = "DEAKTİF";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
             }
         }
     }
