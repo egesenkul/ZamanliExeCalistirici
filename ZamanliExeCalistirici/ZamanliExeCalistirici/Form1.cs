@@ -10,11 +10,63 @@ using System.Windows.Forms;
 
 namespace ZamanliExeCalistirici
 {
-    public partial class Form1 : Form
+    public partial class FormZamanliProgramCalistirici : Form
     {
-        public Form1()
+        public FormZamanliProgramCalistirici()
         {
             InitializeComponent();
+        }
+
+        private void FormZamanliProgramCalistirici_Load(object sender, EventArgs e)
+        {
+            Baslangic();
+        }
+
+        private void Baslangic()
+        {
+            try
+            {
+                ZamanTanimlaGunDoldurucu();
+                ZamanTanimlamaFiltrelemeGunDoldurucu();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
+        }
+
+        private void ZamanTanimlamaFiltrelemeGunDoldurucu() // TANIMLANMIŞ ZAMANLARI LİSTELEME FİLTRELEMESİ COMBOBOX
+        {
+            try
+            {
+                cmbTanimliZamanGun.Items.Add("TÜM GÜNLER");
+                cmbTanimliZamanGun.Items.Add("PAZARTESİ");
+                cmbTanimliZamanGun.Items.Add("SALI");
+                cmbTanimliZamanGun.Items.Add("ÇARŞAMBA");
+                cmbTanimliZamanGun.Items.Add("PERŞEMBE");
+                cmbTanimliZamanGun.Items.Add("CUMA");
+                cmbTanimliZamanGun.SelectedIndex = 0;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
+        }
+
+        private void ZamanTanimlaGunDoldurucu() // ZAMAN TANIMLAMADA BULUNAN COMBOBOXA GÜNLERİ EKLEMEKTEDİR
+        {
+            try
+            {
+                cmbZamanTanimlaGun.Items.Add("PAZARTESİ");
+                cmbZamanTanimlaGun.Items.Add("SALI");
+                cmbZamanTanimlaGun.Items.Add("ÇARŞAMBA");
+                cmbZamanTanimlaGun.Items.Add("PERŞEMBE");
+                cmbZamanTanimlaGun.Items.Add("CUMA");
+                cmbZamanTanimlaGun.SelectedIndex = 0;
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.StackTrace);
+            }
         }
     }
 }
