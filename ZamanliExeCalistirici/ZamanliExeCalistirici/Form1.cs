@@ -64,8 +64,37 @@ namespace ZamanliExeCalistirici
                 cmbZamanTanimlaGun.Items.Add("CUMA");
                 cmbZamanTanimlaGun.SelectedIndex = 0;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.StackTrace);
+            }
+        }
+
+        private void btnProgramSec_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog programSecimEkrani = new OpenFileDialog();
+                programSecimEkrani.Filter = "Exe Files (.exe)|*.exe|All Files (*.*)|*.*";
+                if (programSecimEkrani.ShowDialog() == DialogResult.OK)
+                {
+                    txtDosyaYolu.Text = programSecimEkrani.FileName;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
+            
+        }
+
+        private void btnOnayla_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtDosyaYolu.Text))
+            {
+                MessageBox.Show("ÇALIŞACAK PROGRAMIN DOSYA YOLUNU BELİRTİNİZ");
+                btnProgramSec.Focus();
+                return;
             }
         }
     }

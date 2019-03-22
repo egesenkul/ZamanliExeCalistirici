@@ -149,6 +149,7 @@
             this.btnProgramSec.TabIndex = 2;
             this.btnProgramSec.Text = "GÖZAT";
             this.btnProgramSec.UseVisualStyleBackColor = true;
+            this.btnProgramSec.Click += new System.EventHandler(this.btnProgramSec_Click);
             // 
             // btnOnayla
             // 
@@ -158,6 +159,7 @@
             this.btnOnayla.TabIndex = 3;
             this.btnOnayla.Text = "ONAYLA";
             this.btnOnayla.UseVisualStyleBackColor = true;
+            this.btnOnayla.Click += new System.EventHandler(this.btnOnayla_Click);
             // 
             // label2
             // 
