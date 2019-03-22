@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
@@ -24,6 +26,9 @@ namespace ZamanliExeCalistirici
         {
             Baslangic();
             TanimliZamanlariCek();
+
+            Thread fonksiyon = new Thread(new ThreadStart(AnaFonksiyon));
+            fonksiyon.Start();
         }
 
         private void TanimliZamanlariCek() // KAYIT DOSYASINDAN TANIMLANMIŞ ZAMANLARI AL
@@ -40,13 +45,38 @@ namespace ZamanliExeCalistirici
 
         private void AnaFonksiyon()
         {
-            while (true)
+            try
             {
-                if (lblDurum.Text.Equals("DEAKTİF"))
-                    return;
-                if (string.IsNullOrEmpty(txtDosyaYolu.Text))
-                    return;
+                while (true)
+                {
+                    if (lblDurum.Text.Equals("DEAKTİF"))
+                        return;
+                    if (string.IsNullOrEmpty(txtDosyaYolu.Text))
+                        return;
 
+                    int day = (int)System.DateTime.Now.DayOfWeek;
+
+                    // day 5 = CUMA
+
+                    foreach (Zaman zaman in TanimliZamanlar)
+                    {
+                        if (zaman.Gun + 1 == day)
+                        {
+                            if (zaman.Saat == DateTime.Now.Hour && zaman.Dakika == DateTime.Now.Minute)
+                            {
+                                Process.Start(txtDosyaYolu.Text);
+                                Thread.Sleep(60000);
+                            }
+                        }
+                    }
+
+
+                    Thread.Sleep(100);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
             }
         }
 
