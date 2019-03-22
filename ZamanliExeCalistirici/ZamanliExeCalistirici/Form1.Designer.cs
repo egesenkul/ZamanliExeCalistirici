@@ -30,6 +30,10 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabProgramTanimlari = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnCalistir = new System.Windows.Forms.Button();
+            this.lblDurum = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.btnOnayla = new System.Windows.Forms.Button();
             this.btnProgramSec = new System.Windows.Forms.Button();
             this.txtDosyaYolu = new System.Windows.Forms.TextBox();
@@ -54,10 +58,6 @@
             this.gecmisTarih1 = new System.Windows.Forms.DateTimePicker();
             this.listViewGecmis = new System.Windows.Forms.ListView();
             this.label8 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.lblDurum = new System.Windows.Forms.Label();
-            this.btnCalistir = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabProgramTanimlari.SuspendLayout();
             this.tabZamanTanimlari.SuspendLayout();
@@ -94,6 +94,50 @@
             this.tabProgramTanimlari.Text = "PROGRAM TANIMLARI";
             this.tabProgramTanimlari.UseVisualStyleBackColor = true;
             // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Red;
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(326, 356);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(222, 49);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "DURDUR";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btnCalistir
+            // 
+            this.btnCalistir.BackColor = System.Drawing.Color.LawnGreen;
+            this.btnCalistir.ForeColor = System.Drawing.Color.Blue;
+            this.btnCalistir.Location = new System.Drawing.Point(85, 356);
+            this.btnCalistir.Name = "btnCalistir";
+            this.btnCalistir.Size = new System.Drawing.Size(222, 49);
+            this.btnCalistir.TabIndex = 6;
+            this.btnCalistir.Text = "BAŞLAT";
+            this.btnCalistir.UseVisualStyleBackColor = false;
+            this.btnCalistir.Click += new System.EventHandler(this.btnCalistir_Click);
+            // 
+            // lblDurum
+            // 
+            this.lblDurum.AutoSize = true;
+            this.lblDurum.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.lblDurum.Location = new System.Drawing.Point(202, 242);
+            this.lblDurum.Name = "lblDurum";
+            this.lblDurum.Size = new System.Drawing.Size(15, 20);
+            this.lblDurum.TabIndex = 5;
+            this.lblDurum.Text = " ";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.label10.Location = new System.Drawing.Point(9, 242);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(83, 20);
+            this.label10.TabIndex = 4;
+            this.label10.Text = "DURUM:";
+            // 
             // btnOnayla
             // 
             this.btnOnayla.Location = new System.Drawing.Point(206, 151);
@@ -125,7 +169,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(15, 108);
+            this.label1.Location = new System.Drawing.Point(9, 108);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(163, 20);
             this.label1.TabIndex = 0;
@@ -165,11 +209,13 @@
             // 
             // cmbTanimliZamanGun
             // 
+            this.cmbTanimliZamanGun.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTanimliZamanGun.FormattingEnabled = true;
             this.cmbTanimliZamanGun.Location = new System.Drawing.Point(281, 161);
             this.cmbTanimliZamanGun.Name = "cmbTanimliZamanGun";
             this.cmbTanimliZamanGun.Size = new System.Drawing.Size(137, 24);
             this.cmbTanimliZamanGun.TabIndex = 11;
+            this.cmbTanimliZamanGun.SelectedIndexChanged += new System.EventHandler(this.cmbTanimliZamanGun_SelectedIndexChanged);
             // 
             // listViewTanimliZamanlar
             // 
@@ -177,7 +223,9 @@
             this.listViewTanimliZamanlar.Name = "listViewTanimliZamanlar";
             this.listViewTanimliZamanlar.Size = new System.Drawing.Size(594, 228);
             this.listViewTanimliZamanlar.TabIndex = 10;
+            this.listViewTanimliZamanlar.TileSize = new System.Drawing.Size(400, 36);
             this.listViewTanimliZamanlar.UseCompatibleStateImageBehavior = false;
+            this.listViewTanimliZamanlar.View = System.Windows.Forms.View.List;
             // 
             // label6
             // 
@@ -247,6 +295,7 @@
             // 
             // cmbZamanTanimlaGun
             // 
+            this.cmbZamanTanimlaGun.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbZamanTanimlaGun.FormattingEnabled = true;
             this.cmbZamanTanimlaGun.Location = new System.Drawing.Point(114, 59);
             this.cmbZamanTanimlaGun.Name = "cmbZamanTanimlaGun";
@@ -329,50 +378,6 @@
             this.label8.Size = new System.Drawing.Size(294, 20);
             this.label8.TabIndex = 2;
             this.label8.Text = "PROGRAMIN ÇALIŞMA GEÇMİŞİ:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label10.Location = new System.Drawing.Point(15, 242);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(83, 20);
-            this.label10.TabIndex = 4;
-            this.label10.Text = "DURUM:";
-            // 
-            // lblDurum
-            // 
-            this.lblDurum.AutoSize = true;
-            this.lblDurum.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.lblDurum.Location = new System.Drawing.Point(202, 242);
-            this.lblDurum.Name = "lblDurum";
-            this.lblDurum.Size = new System.Drawing.Size(15, 20);
-            this.lblDurum.TabIndex = 5;
-            this.lblDurum.Text = " ";
-            // 
-            // btnCalistir
-            // 
-            this.btnCalistir.BackColor = System.Drawing.Color.LawnGreen;
-            this.btnCalistir.ForeColor = System.Drawing.Color.Blue;
-            this.btnCalistir.Location = new System.Drawing.Point(85, 356);
-            this.btnCalistir.Name = "btnCalistir";
-            this.btnCalistir.Size = new System.Drawing.Size(222, 49);
-            this.btnCalistir.TabIndex = 6;
-            this.btnCalistir.Text = "BAŞLAT";
-            this.btnCalistir.UseVisualStyleBackColor = false;
-            this.btnCalistir.Click += new System.EventHandler(this.btnCalistir_Click);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Red;
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(326, 356);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(222, 49);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "DURDUR";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // FormZamanliProgramCalistirici
             // 
