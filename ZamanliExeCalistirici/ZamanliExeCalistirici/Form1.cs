@@ -65,6 +65,7 @@ namespace ZamanliExeCalistirici
                             if (zaman.Saat == DateTime.Now.Hour && zaman.Dakika == DateTime.Now.Minute)
                             {
                                 Process.Start(txtDosyaYolu.Text);
+                                XMLGuncelleGecmis();
                                 Thread.Sleep(60000);
                             }
                         }
@@ -86,8 +87,23 @@ namespace ZamanliExeCalistirici
             {
                 ZamanTanimlaGunDoldurucu();
                 ZamanTanimlamaFiltrelemeGunDoldurucu();
+                gecmisTarih1.Value = DateTime.Now.AddDays(-7);
+                GecmisDoldurucu();
             }
             catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
+        }
+
+        private void GecmisDoldurucu() // GEÇMİŞ BELGESİNİ OKUR VE LİSTEYİ DOLDURUR
+        {
+            try
+            {
+                XMLOkuGecmis();
+                GecmisListesiGuncelleyici();
+            }
+            catch(Exception ex)
             {
                 MessageBox.Show(ex.StackTrace);
             }
@@ -219,7 +235,26 @@ namespace ZamanliExeCalistirici
                 yaz.WriteEndElement();
                 yaz.WriteEndElement();
                 yaz.Close();
-                Console.WriteLine("XML dosyası oluşturuldu ve veriler eklendi.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
+        }
+
+        private void GecmisListesiGuncelleyici() // EKRANDA GEÇMİŞ LİSTESİNİ GÜNCELLER VE FİLTRELER
+        {
+            try
+            {
+                listViewGecmis.Items.Clear();
+                gecmis = gecmis.OrderBy(o => o).ToList();
+                foreach (DateTime zaman in gecmis)
+                {
+                    if (zaman >= gecmisTarih1.Value && zaman <= gecmisTarih2.Value)
+                    {
+                        listViewGecmis.Items.Add(zaman.ToString());
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -301,6 +336,42 @@ namespace ZamanliExeCalistirici
                     return "CUMA";
             }
             return "";
+        }
+
+        List<DateTime> gecmis;
+        
+        private void XMLOkuGecmis() // GEÇMİŞİN BULUNDUĞU DOSYAYI OKUR
+        {
+            try
+            {
+                gecmis = new List<DateTime>();
+                XmlTextReader oku = new XmlTextReader("Gecmis.xml");
+                try
+                {
+
+                    while (oku.Read())  
+                    {
+                        if (oku.NodeType == XmlNodeType.Element) 
+                        {
+                            switch (oku.Name) 
+                            {
+                                case "Tarih":
+                                    gecmis.Add(Convert.ToDateTime(oku.ReadString()));
+                                    break;
+                            }
+                        }
+                    }
+                    oku.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.StackTrace);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
         }
 
         private void XMLOkuTanimlamalar() // TANIMLAMALARIN BULUNDUĞU DOSYAYI OKUR
@@ -399,6 +470,30 @@ namespace ZamanliExeCalistirici
             if (TanimliZamanlar.Count == 0)
                 return;
             ListeGuncelleyici();
+        }
+
+        private void XMLGuncelleGecmis() // GEÇMİŞİ BARINDIRAN DOSYAYI GÜNCELLE
+        {
+            XmlTextWriter yaz = new XmlTextWriter("Gecmis.xml", System.Text.UTF8Encoding.UTF8);
+            yaz.Formatting = Formatting.Indented;
+            try
+            {
+                yaz.WriteStartDocument();
+                yaz.WriteStartElement("TanimliExe");
+                yaz.WriteStartElement("Bilgiler");
+                yaz.WriteStartElement("Gecmis");
+                
+                yaz.WriteElementString("Tarih", DateTime.Now.ToString());
+               
+                yaz.WriteEndElement();
+                yaz.WriteEndElement();
+                yaz.WriteEndElement();
+                yaz.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
         }
     }
 }
