@@ -35,7 +35,7 @@ namespace ZamanliExeCalistirici
         {
             try
             {
-                XMLOku();
+                XMLOkuTanimlamalar();
             }
             catch(Exception ex)
             {
@@ -43,7 +43,7 @@ namespace ZamanliExeCalistirici
             }
         }
 
-        private void AnaFonksiyon()
+        private void AnaFonksiyon() // TANIMLANAN ZAMANLARDA PROGRAMI ÇALIŞTIRACAK FONKSİYON
         {
             try
             {
@@ -80,7 +80,7 @@ namespace ZamanliExeCalistirici
             }
         }
 
-        private void Baslangic()
+        private void Baslangic() // PROGRAM AÇILDIĞINDA ÇALIŞACAK FONKSİYON
         {
             try
             {
@@ -156,7 +156,7 @@ namespace ZamanliExeCalistirici
                     btnProgramSec.Focus();
                     return;
                 }
-                XMLGuncelle();
+                XMLGuncelleTanimlamalar();
             }
             catch(Exception ex)
             {
@@ -184,7 +184,7 @@ namespace ZamanliExeCalistirici
                 }
                 Zaman EklenecekZaman = new Zaman(cmbZamanTanimlaGun.SelectedIndex.ToString(), txtZamanEkleSaat.Text, txtZamanEkleDakika.Text);
                 TanimliZamanlar.Add(EklenecekZaman);
-                XMLGuncelle();
+                XMLGuncelleTanimlamalar();
                 ListeGuncelleyici();
             }
             catch(Exception ex)
@@ -193,7 +193,7 @@ namespace ZamanliExeCalistirici
             }
         }
 
-        private void XMLGuncelle()
+        private void XMLGuncelleTanimlamalar() // SAAT TANIMLAMALARINI BARINDIRAN DOSYAYI GÜNCELLER
         {
             XmlTextWriter yaz = new XmlTextWriter("ZamanliExeCalistir.xml", System.Text.UTF8Encoding.UTF8);
             yaz.Formatting = Formatting.Indented;
@@ -227,7 +227,7 @@ namespace ZamanliExeCalistirici
             }
         }
 
-        private void ListeGuncelleyici()
+        private void ListeGuncelleyici() // EKRANDA BULUNAN LİSTEYİ GÜNCELLER VE FİLTRELER
         {
             try
             {
@@ -285,7 +285,7 @@ namespace ZamanliExeCalistirici
             }
         }
 
-        private string GunuAl(int i)
+        private string GunuAl(int i) // GÜNÜ YAZI OLARAK VERİR
         {
             switch (i)
             {
@@ -303,7 +303,7 @@ namespace ZamanliExeCalistirici
             return "";
         }
 
-        private void XMLOku()
+        private void XMLOkuTanimlamalar() // TANIMLAMALARIN BULUNDUĞU DOSYAYI OKUR
         {
             try
             {
@@ -364,13 +364,13 @@ namespace ZamanliExeCalistirici
             }
         }
 
-        private void btnCalistir_Click(object sender, EventArgs e)
+        private void btnCalistir_Click(object sender, EventArgs e) // ÇALIŞTIR BUTTONUNA BASINCA ÇALIŞIR
         {
             try
             {
                 lblDurum.ForeColor = Color.Green;
                 lblDurum.Text = "AKTİF";
-                XMLGuncelle();
+                XMLGuncelleTanimlamalar();
             }
             catch(Exception ex)
             {
@@ -378,13 +378,13 @@ namespace ZamanliExeCalistirici
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnDurdur_Click(object sender, EventArgs e) // DURDUR BUTTONUNA BASINCA ÇALIŞIR
         {
             try
             {
                 lblDurum.ForeColor = Color.Red;
                 lblDurum.Text = "DEAKTİF";
-                XMLGuncelle();
+                XMLGuncelleTanimlamalar();
             }
             catch (Exception ex)
             {
@@ -392,7 +392,7 @@ namespace ZamanliExeCalistirici
             }
         }
 
-        private void cmbTanimliZamanGun_SelectedIndexChanged(object sender, EventArgs e)
+        private void cmbTanimliZamanGun_SelectedIndexChanged(object sender, EventArgs e) // SEÇİLİ GÜNE GÖRE LİSTEYİ FİLTRELER
         {
             if (TanimliZamanlar == null)
                 return;

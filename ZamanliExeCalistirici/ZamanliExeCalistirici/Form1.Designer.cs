@@ -30,7 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabProgramTanimlari = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnDurdur = new System.Windows.Forms.Button();
             this.btnCalistir = new System.Windows.Forms.Button();
             this.lblDurum = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -78,7 +78,7 @@
             // 
             // tabProgramTanimlari
             // 
-            this.tabProgramTanimlari.Controls.Add(this.button2);
+            this.tabProgramTanimlari.Controls.Add(this.btnDurdur);
             this.tabProgramTanimlari.Controls.Add(this.btnCalistir);
             this.tabProgramTanimlari.Controls.Add(this.lblDurum);
             this.tabProgramTanimlari.Controls.Add(this.label10);
@@ -94,17 +94,17 @@
             this.tabProgramTanimlari.Text = "PROGRAM TANIMLARI";
             this.tabProgramTanimlari.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnDurdur
             // 
-            this.button2.BackColor = System.Drawing.Color.Red;
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(326, 356);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(222, 49);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "DURDUR";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnDurdur.BackColor = System.Drawing.Color.Red;
+            this.btnDurdur.ForeColor = System.Drawing.Color.White;
+            this.btnDurdur.Location = new System.Drawing.Point(326, 356);
+            this.btnDurdur.Name = "btnDurdur";
+            this.btnDurdur.Size = new System.Drawing.Size(222, 49);
+            this.btnDurdur.TabIndex = 7;
+            this.btnDurdur.Text = "DURDUR";
+            this.btnDurdur.UseVisualStyleBackColor = false;
+            this.btnDurdur.Click += new System.EventHandler(this.btnDurdur_Click);
             // 
             // btnCalistir
             // 
@@ -428,7 +428,7 @@
         private System.Windows.Forms.DateTimePicker gecmisTarih1;
         private System.Windows.Forms.ListView listViewGecmis;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnDurdur;
         private System.Windows.Forms.Button btnCalistir;
         private System.Windows.Forms.Label lblDurum;
         private System.Windows.Forms.Label label10;
